@@ -42,10 +42,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FirstClassCommandTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Exude\Exude.csproj">
+      <Project>{BC9C31F8-7928-4CDC-A2CC-5072B1DEF50B}</Project>
+      <Name>Exude</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
