@@ -19,12 +19,12 @@ namespace Grean.Exude.UnitTests
         }
 
         [Fact]
-        public void ActionIsCorrect()
+        public void TestActionIsCorrect()
         {
             Action<object> expected = _ => { };
             var sut = new FirstClassCommand(expected);
 
-            Action<object> actual = sut.Action;
+            Action<object> actual = sut.TestAction;
 
             Assert.Equal(expected, actual);
         }

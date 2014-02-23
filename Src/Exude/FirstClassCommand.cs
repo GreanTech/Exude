@@ -8,25 +8,25 @@ namespace Grean.Exude
 {
     public class FirstClassCommand : TestCommand
     {
-        private readonly Action<object> action;
+        private readonly Action<object> testAction;
 
-        public FirstClassCommand(Action<object> action)
+        public FirstClassCommand(Action<object> testAction)
             : base(Reflector.Wrap(((Action)(() => { })).Method), "", 0)
         {
-            this.action = action;
+            this.testAction = testAction;
         }
 
         public override MethodResult Execute(object testClass)
         {
-            this.action(testClass);
+            this.testAction(testClass);
             return new PassedResult(
                 Reflector.Wrap(((Action)(() => { })).Method),
                 null);
         }
 
-        public Action<object> Action
+        public Action<object> TestAction
         {
-            get { return this.action; }
+            get { return this.testAction; }
         }
     }
 }
