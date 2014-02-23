@@ -20,7 +20,7 @@ namespace Grean.Exude
         {
             this.testAction(testClass);
             return new PassedResult(
-                Reflector.Wrap(((Action)(() => { })).Method),
+                Reflector.Wrap(this.testAction.Method),
                 null);
         }
 

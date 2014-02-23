@@ -45,9 +45,15 @@ namespace Grean.Exude.UnitTests
         [Fact]
         public void ExecuteSuccessfullyReturnsCorrectResult()
         {
-            var sut = new FirstClassCommand(_ => { });
+            Action<object> testAction = _ => { };
+            var sut = new FirstClassCommand(testAction);
+
             var actual = sut.Execute(new object());
-            Assert.IsAssignableFrom<PassedResult>(actual);
+
+            var pr = Assert.IsAssignableFrom<PassedResult>(actual);
+            var expected = Reflector.Wrap(testAction.Method);
+            Assert.Equal(expected.Name, pr.MethodName);
+            Assert.Equal(expected.TypeName, pr.TypeName);
         }
     }
 }
