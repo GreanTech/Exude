@@ -41,5 +41,13 @@ namespace Grean.Exude.UnitTests
 
             Assert.True(verified, "Spy should have been invoked.");
         }
+
+        [Fact]
+        public void ExecuteSuccessfullyReturnsCorrectResult()
+        {
+            var sut = new FirstClassCommand(_ => { });
+            var actual = sut.Execute(new object());
+            Assert.IsAssignableFrom<PassedResult>(actual);
+        }
     }
 }

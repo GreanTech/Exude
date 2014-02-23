@@ -19,7 +19,9 @@ namespace Grean.Exude
         public override MethodResult Execute(object testClass)
         {
             this.action(testClass);
-            return null;
+            return new PassedResult(
+                Reflector.Wrap(((Action)(() => { })).Method),
+                null);
         }
 
         public Action<object> Action
