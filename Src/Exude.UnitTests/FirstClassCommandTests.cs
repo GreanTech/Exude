@@ -28,5 +28,18 @@ namespace Grean.Exude.UnitTests
 
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void ExecuteInvokesAction()
+        {
+            var verified = false;
+            var obj = new object();
+            Action<object> spy = x => verified = x == obj;
+            var sut = new FirstClassCommand(spy);
+
+            sut.Execute(obj);
+
+            Assert.True(verified, "Spy should have been invoked.");
+        }
     }
 }

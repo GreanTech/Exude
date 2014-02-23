@@ -18,7 +18,8 @@ namespace Grean.Exude
 
         public override MethodResult Execute(object testClass)
         {
-            throw new NotImplementedException();
+            this.action(testClass);
+            return null;
         }
 
         public Action<object> Action
