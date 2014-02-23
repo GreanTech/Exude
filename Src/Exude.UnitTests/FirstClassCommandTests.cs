@@ -13,8 +13,20 @@ namespace Grean.Exude.UnitTests
         [Fact]
         public void SutIsTestCommand()
         {
-            var sut = new FirstClassCommand();
+            Action<object> dummyAction = _ => { };
+            var sut = new FirstClassCommand(dummyAction);
             Assert.IsAssignableFrom<ITestCommand>(sut);
+        }
+
+        [Fact]
+        public void ActionIsCorrect()
+        {
+            Action<object> expected = _ => { };
+            var sut = new FirstClassCommand(expected);
+
+            Action<object> actual = sut.Action;
+
+            Assert.Equal(expected, actual);
         }
     }
 }
