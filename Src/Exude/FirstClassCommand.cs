@@ -11,7 +11,7 @@ namespace Grean.Exude
         private readonly Action<object> testAction;
 
         public FirstClassCommand(Action<object> testAction)
-            : base(ConvertToMethodInfo(testAction), "", -1)
+            : base(ConvertToMethodInfo(testAction), null, -1)
         {
             this.testAction = testAction;
         }

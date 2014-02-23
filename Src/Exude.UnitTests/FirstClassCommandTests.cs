@@ -101,5 +101,15 @@ namespace Grean.Exude.UnitTests
                     Reflector.Wrap(sut.TestAction.Method));
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void DisplayNameIsNotEmpty()
+        {
+            var sut = new FirstClassCommand(_ => { });
+            var actual = sut.DisplayName;
+            Assert.False(
+                string.IsNullOrEmpty(actual),
+                "DisplayName should not be null or empty.");
+        }
     }
 }
