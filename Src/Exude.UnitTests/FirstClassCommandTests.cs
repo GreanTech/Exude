@@ -88,5 +88,18 @@ namespace Grean.Exude.UnitTests
             Assert.Throws<ArgumentNullException>(
                 () => new FirstClassCommand(null));
         }
+
+        [Fact]
+        public void TimeoutIsCorrect()
+        {
+            var sut = new FirstClassCommand(_ => { });
+
+            var actual = sut.Timeout;
+
+            var expected =
+                MethodUtility.GetTimeoutParameter(
+                    Reflector.Wrap(sut.TestAction.Method));
+            Assert.Equal(expected, actual);
+        }
     }
 }
