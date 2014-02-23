@@ -11,7 +11,7 @@ namespace Grean.Exude
         private readonly Action<object> testAction;
 
         public FirstClassCommand(Action<object> testAction)
-            : base(Reflector.Wrap(((Action)(() => { })).Method), "", 0)
+            : base(Reflector.Wrap(testAction.Method), "", 0)
         {
             this.testAction = testAction;
         }

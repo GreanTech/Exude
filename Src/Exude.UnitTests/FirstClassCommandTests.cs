@@ -55,5 +55,31 @@ namespace Grean.Exude.UnitTests
             Assert.Equal(expected.Name, pr.MethodName);
             Assert.Equal(expected.TypeName, pr.TypeName);
         }
+
+        [Fact]
+        public void ConstructorCorrectlyAssignsTestMethod()
+        {
+            Action<object> testAction = _ => { };
+            var sut = new FirstClassCommandInspector(testAction);
+            Assert.IsAssignableFrom<FirstClassCommand>(sut);
+
+            var actual = sut.TestMethodInspectionValue;
+
+            var expected = Reflector.Wrap(testAction.Method);
+            Assert.Equal(expected, actual);
+        }
+
+        private class FirstClassCommandInspector : FirstClassCommand
+        {
+            public FirstClassCommandInspector(Action<object> testAction)
+                : base(testAction)
+            {
+            }
+
+            public IMethodInfo TestMethodInspectionValue
+            {
+                get { return this.testMethod; }
+            }
+        }
     }
 }
