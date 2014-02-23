@@ -81,5 +81,12 @@ namespace Grean.Exude.UnitTests
                 get { return this.testMethod; }
             }
         }
+
+        [Fact]
+        public void ConstructWithNullTestActionThrows()
+        {
+            Assert.Throws<ArgumentNullException>(
+                () => new FirstClassCommand(null));
+        }
     }
 }

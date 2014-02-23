@@ -11,7 +11,7 @@ namespace Grean.Exude
         private readonly Action<object> testAction;
 
         public FirstClassCommand(Action<object> testAction)
-            : base(Reflector.Wrap(testAction.Method), "", 0)
+            : base(ConvertToMethodInfo(testAction), "", 0)
         {
             this.testAction = testAction;
         }
@@ -27,6 +27,15 @@ namespace Grean.Exude
         public Action<object> TestAction
         {
             get { return this.testAction; }
+        }
+
+        private static IMethodInfo ConvertToMethodInfo(
+            Action<object> testAction)
+        {
+            if (testAction == null)
+                throw new ArgumentNullException("testAction");
+
+            return Reflector.Wrap(testAction.Method);
         }
     }
 }
