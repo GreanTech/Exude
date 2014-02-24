@@ -58,5 +58,13 @@ namespace Grean.Exude.UnitTests
         }
 
         private static void VoidTests() { }
+
+        [Fact]
+        public void CreateTestCommandsForNullMethodThrows()
+        {
+            var sut = new FirstClassTestsAttribute();
+            Assert.Throws<ArgumentNullException>(
+                () => sut.CreateTestCommands(null));
+        }
     }
 }

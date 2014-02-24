@@ -12,6 +12,9 @@ namespace Grean.Exude
         protected override IEnumerable<ITestCommand> EnumerateTestCommands(
             IMethodInfo method)
         {
+            if (method == null)
+                throw new ArgumentNullException("method");
+
             if (!typeof(IEnumerable<FirstClassCommand>).IsAssignableFrom(method.MethodInfo.ReturnType))
                 throw new ArgumentException(
                     invalidReturnTypeErrorMessage,
