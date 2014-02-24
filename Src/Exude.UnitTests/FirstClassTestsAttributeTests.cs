@@ -44,5 +44,19 @@ namespace Grean.Exude.UnitTests
             yield return new FirstClassCommand(_ => { });
             yield return new FirstClassCommand(_ => { });
         }
+
+        [Fact]
+        public void CreateTestsForMethodWithoutFirstClassTestsThrows()
+        {
+            var method = Reflector.Wrap(this.GetType().GetMethod(
+                "VoidTests",
+                BindingFlags.Static | BindingFlags.NonPublic));
+            var sut = new FirstClassTestsAttribute();
+
+            Assert.Throws<ArgumentException>(
+                () => sut.CreateTestCommands(method));
+        }
+
+        private static void VoidTests() { }
     }
 }
