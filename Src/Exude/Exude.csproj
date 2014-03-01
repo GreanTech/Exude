@@ -45,7 +45,9 @@
   <ItemGroup>
     <Compile Include="FirstClassCommand.cs" />
     <Compile Include="FirstClassTestsAttribute.cs" />
+    <Compile Include="ITestCase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestCase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

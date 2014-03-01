@@ -46,6 +46,7 @@
     <Compile Include="FirstClassTestsAttributeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenario.cs" />
+    <Compile Include="TestCaseTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
