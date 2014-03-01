@@ -12,8 +12,20 @@ namespace Grean.Exude.UnitTests
         [Fact]
         public void SutIsTestCase()
         {
-            var sut = new TestCase();
+            Action<object> dummyAction = _ => { };
+            var sut = new TestCase(dummyAction);
             Assert.IsAssignableFrom<ITestCase>(sut);
+        }
+
+        [Fact]
+        public void TestActionIsCorrect()
+        {
+            Action<object> expected = _ => { };
+            var sut = new TestCase(expected);
+
+            Action<object> actual = sut.TestAction;
+
+            Assert.Equal(expected, actual);
         }
     }
 }
