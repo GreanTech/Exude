@@ -9,15 +9,15 @@ namespace Grean.Exude.UnitTests
     public class Scenario
     {
         [FirstClassTests]
-        public static IEnumerable<FirstClassCommand> YieldFirstClassTests()
+        public static IEnumerable<ITestCase> YieldFirstClassTests()
         {
-            yield return new FirstClassCommand(_ => Assert.Equal(1, 1));
-            yield return new FirstClassCommand(_ => Assert.Equal(2, 2));
-            yield return new FirstClassCommand(_ => Assert.Equal(3, 3));
+            yield return new TestCase(_ => Assert.Equal(1, 1));
+            yield return new TestCase(_ => Assert.Equal(2, 2));
+            yield return new TestCase(_ => Assert.Equal(3, 3));
         }
 
         [FirstClassTests]
-        public static FirstClassCommand[] ProjectTestCasesAsArray()
+        public static ITestCase[] ProjectTestCasesAsArray()
         {
             var testCases = new[] {
                 new { x =  1, y =    2 },
@@ -25,7 +25,7 @@ namespace Grean.Exude.UnitTests
                 new { x = 42, y = 1337 },
             };
             return testCases
-                .Select(tc => new FirstClassCommand(_ =>
+                .Select(tc => new TestCase(_ =>
                     Assert.True(tc.x < tc.y)))
                 .ToArray();
         }

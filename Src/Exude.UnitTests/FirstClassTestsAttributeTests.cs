@@ -38,11 +38,11 @@ namespace Grean.Exude.UnitTests
                 "All test actions should be declared here.");
         }
 
-        private static IEnumerable<FirstClassCommand> CreateFirstClassTests()
+        private static IEnumerable<ITestCase> CreateFirstClassTests()
         {
-            yield return new FirstClassCommand(_ => { });
-            yield return new FirstClassCommand(_ => { });
-            yield return new FirstClassCommand(_ => { });
+            yield return new TestCase(_ => { });
+            yield return new TestCase(_ => { });
+            yield return new TestCase(_ => { });
         }
 
         [Fact]

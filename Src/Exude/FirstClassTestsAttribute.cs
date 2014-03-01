@@ -22,20 +22,20 @@ namespace Grean.Exude
 
             var testClassInstance = method.CreateInstance();
             var returnValue = method.MethodInfo.Invoke(testClassInstance, null);
-            return from fcc in (IEnumerable<FirstClassCommand>)returnValue
-                   select fcc as ITestCommand;
+            return from tc in (IEnumerable<ITestCase>)returnValue
+                   select tc.ConvertToTestCommand(method);
         }
 
         private static bool IsReturnTypeInvalid(IMethodInfo method)
         {
-            return !typeof(IEnumerable<FirstClassCommand>).IsAssignableFrom(
+            return !typeof(IEnumerable<ITestCase>).IsAssignableFrom(
                 method.MethodInfo.ReturnType);
         }
 
-        private const string invalidReturnTypeErrorMessage = @"The supplied method does not return IEnumerable<FirstClassCommand>. When using the [FirstClassTests] attribute, the method it adorns must return IEnumerable<FirstClassCommand>; for example:
+        private const string invalidReturnTypeErrorMessage = @"The supplied method does not return IEnumerable<ITestCase>. When using the [FirstClassTests] attribute, the method it adorns must return IEnumerable<ITestCase>; for example:
 
 [FirstClassTests]
-public static IEnumerable<FirstClassCommand> MyTestMethod()
+public static IEnumerable<ITestCase> MyTestMethod()
 {
     // Return FirstClassCommands here
 }
