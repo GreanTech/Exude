@@ -10,9 +10,14 @@ namespace Grean.Exude
     {
         private readonly Action<object> testAction;
 
-        public FirstClassCommand(Action<object> testAction)
-            : base(ConvertToMethodInfo(testAction), null, -1)
+        public FirstClassCommand(
+            Action<object> testAction,
+            IMethodInfo testMethod)
+            : base(testMethod, null, -1)
         {
+            if (testAction == null)
+                throw new ArgumentNullException("testAction");
+
             this.testAction = testAction;
         }
 

@@ -52,7 +52,7 @@ namespace Grean.Exude.UnitTests
         private readonly static IMethodInfo dummyMethod = 
             Reflector.Wrap(typeof(TestCaseTests).GetMethod(
                 "DummyTestMethod",
-                BindingFlags.Static | BindingFlags.NonPublic));
+                BindingFlags.Instance | BindingFlags.NonPublic));
 
         private void DummyTestMethod()
         {

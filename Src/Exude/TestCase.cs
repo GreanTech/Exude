@@ -23,7 +23,7 @@ namespace Grean.Exude
             if (method == null)
                 throw new ArgumentNullException("method");
 
-            return new FirstClassCommand(this.testAction);
+            return new FirstClassCommand(this.testAction, method);
         }
 
         public Action<object> TestAction
