@@ -33,14 +33,5 @@ namespace Grean.Exude
         {
             get { return this.testAction; }
         }
-
-        private static IMethodInfo ConvertToMethodInfo(
-            Action<object> testAction)
-        {
-            if (testAction == null)
-                throw new ArgumentNullException("testAction");
-
-            return Reflector.Wrap(testAction.Method);
-        }
     }
 }
