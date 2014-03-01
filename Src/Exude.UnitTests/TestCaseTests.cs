@@ -57,5 +57,15 @@ namespace Grean.Exude.UnitTests
         private void DummyTestMethod()
         {
         }
+
+        [Fact]
+        public void ConvertToTestCommandWithNullMethodThrows()
+        {
+            Action<object> dummyAction = _ => { };
+            var sut = new TestCase(dummyAction);
+
+            Assert.Throws<ArgumentNullException>(
+                () => sut.ConvertToTestCommand(null));
+        }
     }
 }
