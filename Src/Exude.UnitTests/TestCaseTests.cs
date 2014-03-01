@@ -27,5 +27,12 @@ namespace Grean.Exude.UnitTests
 
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void ConstructWithNullTestActionThrows()
+        {
+            Assert.Throws<ArgumentNullException>(
+                () => new TestCase(null));
+        }
     }
 }
