@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Xunit;
 using Grean.Exude;
+using Xunit.Sdk;
+using System.Reflection;
 
 namespace Grean.Exude.UnitTests
 {
@@ -33,6 +35,27 @@ namespace Grean.Exude.UnitTests
         {
             Assert.Throws<ArgumentNullException>(
                 () => new TestCase(null));
+        }
+
+        [Fact]
+        public void ConvertToTestCommandReturnsCorrectResult()
+        {
+            Action<object> expected = _ => { };
+            var sut = new TestCase(expected);
+
+            ITestCommand actual = sut.ConvertToTestCommand(dummyMethod);
+
+            var fcc = Assert.IsAssignableFrom<FirstClassCommand>(actual);
+            Assert.Equal(expected, fcc.TestAction);
+        }
+
+        private readonly static IMethodInfo dummyMethod = 
+            Reflector.Wrap(typeof(TestCaseTests).GetMethod(
+                "DummyTestMethod",
+                BindingFlags.Static | BindingFlags.NonPublic));
+
+        private void DummyTestMethod()
+        {
         }
     }
 }

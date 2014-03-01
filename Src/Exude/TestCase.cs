@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Xunit.Sdk;
 
 namespace Grean.Exude
 {
@@ -15,6 +16,11 @@ namespace Grean.Exude
                 throw new ArgumentNullException("testAction");
 
             this.testAction = testAction;
+        }
+
+        public ITestCommand ConvertToTestCommand(IMethodInfo method)
+        {
+            return new FirstClassCommand(this.testAction);
         }
 
         public Action<object> TestAction

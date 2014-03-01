@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Xunit.Sdk;
 
 namespace Grean.Exude
 {
     public interface ITestCase
     {
+        ITestCommand ConvertToTestCommand(IMethodInfo method);
     }
 }
