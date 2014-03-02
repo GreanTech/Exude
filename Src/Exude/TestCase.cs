@@ -46,7 +46,9 @@ namespace Grean.Exude
 
         public ITestCommand ConvertToTestCommand(IMethodInfo method)
         {
-            throw new NotImplementedException();
+            return new FirstClassCommand(
+                obj => this.testAction((T)obj),
+                Reflector.Wrap(this.testAction.Method));
         }
 
         public Action<T> TestAction
