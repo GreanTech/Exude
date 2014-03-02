@@ -33,5 +33,10 @@ namespace Grean.Exude
         {
             get { return this.testAction; }
         }
+
+        public IMethodInfo TestMethod
+        {
+            get { return this.testMethod; }
+        }
     }
 }

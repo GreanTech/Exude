@@ -114,6 +114,14 @@ namespace Grean.Exude.UnitTests
                 "DisplayName should not be null or empty.");
         }
 
+        [Fact]
+        public void TestMethodIsCorrect()
+        {
+            var sut = new FirstClassCommand(_ => { }, anotherMethod);
+            IMethodInfo actual = sut.TestMethod;
+            Assert.Equal(anotherMethod, actual);
+        }
+
         private readonly static IMethodInfo dummyMethod =
             Reflector.Wrap(typeof(FirstClassCommandTests).GetMethod(
                 "DummyTestMethod",
