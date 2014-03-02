@@ -47,8 +47,28 @@ namespace Grean.Exude
         public ITestCommand ConvertToTestCommand(IMethodInfo method)
         {
             return new FirstClassCommand(
-                obj => this.testAction((T)obj),
+                this.AdaptedTestAction,
                 Reflector.Wrap(this.testAction.Method));
+        }
+
+        private Action<object> AdaptedTestAction
+        {
+            get
+            {
+                Action<object> a = testClass =>
+                {
+                    if (!(testClass is T))
+                        throw new ArgumentException(
+                            string.Format(
+                                "The supplied testClass instance isn't compatible with the generic parameter of this TestCase<{0}>. The instance type was {1}, but should have been convertible to {0}.",
+                                typeof(T),
+                                testClass.GetType()),
+                            "testClass");
+
+                    this.testAction((T)testClass);
+                };
+                return a;
+            }
         }
 
         public Action<T> TestAction

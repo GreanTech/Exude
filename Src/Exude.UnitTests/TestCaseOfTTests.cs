@@ -54,6 +54,19 @@ namespace Grean.Exude.UnitTests
                 "Invoking TestAction on the resulting FirstClassCommand should indirectly indicate that the original test command was invoked.");
         }
 
+        [Fact]
+        public void ConvertToTestCommandReturnsResultWithAppropriateTypeCheck()
+        {
+            Action<OperatingSystem> dummyAction = _ => { };
+            var sut = new TestCase<OperatingSystem>(dummyAction);
+
+            var actual = sut.ConvertToTestCommand(dummyMethod);
+
+            var fcc = Assert.IsAssignableFrom<FirstClassCommand>(actual);
+            Assert.Throws<ArgumentException>(
+                () => fcc.TestAction(new StringBuilder()));
+        }
+
         private readonly static IMethodInfo dummyMethod =
             Reflector.Wrap(typeof(TestCaseTests).GetMethod(
                 "DummyTestMethod",
