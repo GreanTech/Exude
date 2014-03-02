@@ -61,27 +61,11 @@ namespace Grean.Exude.UnitTests
         {
             Action<object> testAction = _ => { };
             var expected = anotherMethod;
-            var sut = new FirstClassCommandInspector(testAction, expected);
-            Assert.IsAssignableFrom<FirstClassCommand>(sut);
+            var sut = new FirstClassCommand(testAction, expected);
 
-            var actual = sut.TestMethodInspectionValue;
+            var actual = sut.TestMethod;
 
             Assert.Equal(expected, actual);
-        }
-
-        private class FirstClassCommandInspector : FirstClassCommand
-        {
-            public FirstClassCommandInspector(
-                Action<object> testAction,
-                IMethodInfo testMethod)
-                : base(testAction, testMethod)
-            {
-            }
-
-            public IMethodInfo TestMethodInspectionValue
-            {
-                get { return this.testMethod; }
-            }
         }
 
         [Fact]
