@@ -34,9 +34,21 @@ namespace Grean.Exude
 
     public class TestCase<T> : ITestCase
     {
+        private Action<T> testAction;
+
+        public TestCase(Action<T> testAction)
+        {
+            this.testAction = testAction;
+        }
+
         public ITestCommand ConvertToTestCommand(IMethodInfo method)
         {
             throw new NotImplementedException();
+        }
+
+        public Action<T> TestAction
+        {
+            get { return this.testAction; }
         }
     }
 }
