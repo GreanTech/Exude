@@ -38,6 +38,9 @@ namespace Grean.Exude
 
         public TestCase(Action<T> testAction)
         {
+            if (testAction == null)
+                throw new ArgumentNullException("testAction");
+
             this.testAction = testAction;
         }
 
