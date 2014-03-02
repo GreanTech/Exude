@@ -29,6 +29,11 @@ namespace Grean.Exude
                 null);
         }
 
+        public override bool ShouldCreateInstance
+        {
+            get { return true; }
+        }
+
         public Action<object> TestAction
         {
             get { return this.testAction; }

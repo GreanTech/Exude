@@ -29,5 +29,38 @@ namespace Grean.Exude.UnitTests
                     Assert.True(tc.x < tc.y)))
                 .ToArray();
         }
+
+        public void AParameterizedTest(DateTimeOffset x, DateTimeOffset y)
+        {
+            Assert.True(x < y);
+        }
+
+        [FirstClassTests]
+        public static TestCase<Scenario>[] RunAParameterizedTest()
+        {
+            var testCases = new[] 
+            {
+                new 
+                {
+                    x = new DateTimeOffset(2002, 10, 12, 18, 15, 0, TimeSpan.FromHours(1)),
+                    y = new DateTimeOffset(2007,  4, 21, 18, 15, 0, TimeSpan.FromHours(1))
+                },
+                new
+                {
+                    x = new DateTimeOffset(1970, 11, 25, 16, 10, 0, TimeSpan.FromHours(1)),
+                    y = new DateTimeOffset(1972,  6,  6,  8,  5, 0, TimeSpan.FromHours(1))
+                },
+                new
+                {
+                    x = new DateTimeOffset(2014, 3, 2, 17, 18, 45, TimeSpan.FromHours(1)),
+                    y = new DateTimeOffset(2014, 3, 2, 17, 18, 45, TimeSpan.FromHours(0))
+                }
+            };
+            return testCases
+                .Select(tc =>
+                    new TestCase<Scenario>(
+                        s => s.AParameterizedTest(tc.x, tc.y)))
+                .ToArray();
+        }
     }
 }
