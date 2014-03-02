@@ -67,11 +67,30 @@ namespace Grean.Exude.UnitTests
                 () => fcc.TestAction(new StringBuilder()));
         }
 
+        [Fact]
+        public void ConvertToTestCommandReturnsResultWithCorrectTestMethod()
+        {
+            Action<StringComparer> dummyAction = _ => { };
+            var sut = new TestCase<StringComparer>(dummyAction);
+
+            var actual = sut.ConvertToTestCommand(anotherMethod);
+
+            var fcc = Assert.IsAssignableFrom<FirstClassCommand>(actual);
+            Assert.Equal(anotherMethod, fcc.TestMethod);
+        }
+
         private readonly static IMethodInfo dummyMethod =
             Reflector.Wrap(typeof(TestCaseTests).GetMethod(
                 "DummyTestMethod",
                 BindingFlags.Instance | BindingFlags.NonPublic));
 
         private void DummyTestMethod() { }
+
+        private readonly static IMethodInfo anotherMethod =
+            Reflector.Wrap(typeof(FirstClassCommandTests).GetMethod(
+                "AnotherTestMethod",
+                BindingFlags.Instance | BindingFlags.NonPublic));
+
+        private void AnotherTestMethod() { }
     }
 }

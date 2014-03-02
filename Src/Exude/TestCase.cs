@@ -46,9 +46,7 @@ namespace Grean.Exude
 
         public ITestCommand ConvertToTestCommand(IMethodInfo method)
         {
-            return new FirstClassCommand(
-                this.AdaptTest,
-                Reflector.Wrap(this.testAction.Method));
+            return new FirstClassCommand(this.AdaptTest, method);
         }
 
         private void AdaptTest(object testClass)
