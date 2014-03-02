@@ -46,6 +46,9 @@ namespace Grean.Exude
 
         public ITestCommand ConvertToTestCommand(IMethodInfo method)
         {
+            if (method == null)
+                throw new ArgumentNullException("method");
+
             return new FirstClassCommand(this.AdaptTest, method);
         }
 

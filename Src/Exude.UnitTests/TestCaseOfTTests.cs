@@ -79,6 +79,16 @@ namespace Grean.Exude.UnitTests
             Assert.Equal(anotherMethod, fcc.TestMethod);
         }
 
+        [Fact]
+        public void ConvertToTestCommandWithNullMethodThrows()
+        {
+            Action<TimeZone> dummyAction = _ => { };
+            var sut = new TestCase<TimeZone>(dummyAction);
+
+            Assert.Throws<ArgumentNullException>(
+                () => sut.ConvertToTestCommand(null));
+        }
+
         private readonly static IMethodInfo dummyMethod =
             Reflector.Wrap(typeof(TestCaseTests).GetMethod(
                 "DummyTestMethod",
