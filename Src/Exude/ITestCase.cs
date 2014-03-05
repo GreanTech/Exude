@@ -12,6 +12,8 @@ namespace Grean.Exude
     /// <see cref="FirstClassTestsAttribute" />.
     /// </summary>
     /// <seealso cref="FirstClassTestsAttribute" />
+    /// <seealso cref="TestCase" />
+    /// <seealso cref="TestCase{T}" />
     public interface ITestCase
     {
         /// <summary>
