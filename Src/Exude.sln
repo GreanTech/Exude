@@ -11,16 +11,21 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Verify|Any CPU = Verify|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{BC9C31F8-7928-4CDC-A2CC-5072B1DEF50B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BC9C31F8-7928-4CDC-A2CC-5072B1DEF50B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC9C31F8-7928-4CDC-A2CC-5072B1DEF50B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC9C31F8-7928-4CDC-A2CC-5072B1DEF50B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC9C31F8-7928-4CDC-A2CC-5072B1DEF50B}.Verify|Any CPU.ActiveCfg = Verify|Any CPU
+		{BC9C31F8-7928-4CDC-A2CC-5072B1DEF50B}.Verify|Any CPU.Build.0 = Verify|Any CPU
 		{AF97890E-59A0-4A20-86A6-26ECE40EEF1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AF97890E-59A0-4A20-86A6-26ECE40EEF1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF97890E-59A0-4A20-86A6-26ECE40EEF1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF97890E-59A0-4A20-86A6-26ECE40EEF1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF97890E-59A0-4A20-86A6-26ECE40EEF1F}.Verify|Any CPU.ActiveCfg = Verify|Any CPU
+		{AF97890E-59A0-4A20-86A6-26ECE40EEF1F}.Verify|Any CPU.Build.0 = Verify|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
