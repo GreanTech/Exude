@@ -39,7 +39,7 @@ namespace Grean.Exude
         /// The <paramref name="testAction" /> constructor argument is
         /// subsequently available as the <see cref="TestAction" /> property.
         /// Likewise, the <paramref name="testMethod" /> constructor argument
-        /// is subsequently available as the <see cref="TestMethod" />
+        /// is subsequently available as the <see cref="HostTestMethod" />
         /// property.
         /// </para>
         /// </remarks>
@@ -47,7 +47,7 @@ namespace Grean.Exude
         /// <paramref name="testAction" /> is <see langword="null" />
         /// </exception>
         /// <seealso cref="TestAction" />
-        /// <seealso cref="TestMethod" />
+        /// <seealso cref="HostTestMethod" />
         public FirstClassCommand(
             Action<object> testAction,
             IMethodInfo testMethod)
@@ -94,7 +94,7 @@ namespace Grean.Exude
         /// <value>
         /// The test method originally supplied as a constructor argument.
         /// </value>
-        public IMethodInfo TestMethod
+        public IMethodInfo HostTestMethod
         {
             get { return this.testMethod; }
         }

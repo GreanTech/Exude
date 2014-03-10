@@ -63,7 +63,7 @@ namespace Grean.Exude.UnitTests
             var expected = anotherMethod;
             var sut = new FirstClassCommand(testAction, expected);
 
-            var actual = sut.TestMethod;
+            var actual = sut.HostTestMethod;
 
             Assert.Equal(expected, actual);
         }
@@ -102,7 +102,7 @@ namespace Grean.Exude.UnitTests
         public void TestMethodIsCorrect()
         {
             var sut = new FirstClassCommand(_ => { }, anotherMethod);
-            IMethodInfo actual = sut.TestMethod;
+            IMethodInfo actual = sut.HostTestMethod;
             Assert.Equal(anotherMethod, actual);
         }
 

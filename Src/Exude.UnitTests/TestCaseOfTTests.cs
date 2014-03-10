@@ -76,7 +76,7 @@ namespace Grean.Exude.UnitTests
             var actual = sut.ConvertToTestCommand(anotherMethod);
 
             var fcc = Assert.IsAssignableFrom<FirstClassCommand>(actual);
-            Assert.Equal(anotherMethod, fcc.TestMethod);
+            Assert.Equal(anotherMethod, fcc.HostTestMethod);
         }
 
         [Fact]
