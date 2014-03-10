@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Xunit.Sdk;
@@ -205,6 +206,7 @@ namespace Grean.Exude
             if (!(testClass is T))
                 throw new ArgumentException(
                     string.Format(
+                        CultureInfo.CurrentCulture,
                         "The supplied testClass instance isn't compatible with the generic parameter of this TestCase<{0}>. The instance type was {1}, but should have been convertible to {0}.",
                         typeof(T),
                         testClass.GetType()),
