@@ -45,6 +45,7 @@ namespace Grean.Exude
     /// </code>
     /// </example>
     /// <seealso cref="ITestCase" />
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1813:AvoidUnsealedAttributes", Justification = "This attribute is part of an inheritance hierarchy. Other developers may want to derive from it in order to extend its behaviour.")]
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class FirstClassTestsAttribute : FactAttribute
     {
