@@ -45,6 +45,7 @@ namespace Grean.Exude
     /// </code>
     /// </example>
     /// <seealso cref="ITestCase" />
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class FirstClassTestsAttribute : FactAttribute
     {
         /// <summary>
