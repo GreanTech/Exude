@@ -23,8 +23,8 @@
     <MSBuild Projects="@(ProjectToBuild)" Properties="Configuration=Release" />
   </Target>
 
-  <!--Test-->
-  <Target Name="Test" DependsOnTargets="Build">
+  <!--Test. Note that the GetTestAssemblies Task MUST BE defined in the Build.config file. -->
+  <Target Name="Test" DependsOnTargets="GetTestAssemblies">
     <xunit Assemblies="@(TestAssemblies)" />
   </Target>
 
