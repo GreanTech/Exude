@@ -6,6 +6,9 @@
     <title>Exude</title>
     <authors>Grean ApS</authors>
     <owners>Grean ApS</owners>
+    <dependencies>
+      <dependency id="xunit" version="1.9.2" />
+    </dependencies>
     <projectUrl>https://github.com/GreanTech/Exude</projectUrl>
     <licenseUrl>https://github.com/GreanTech/Exude/blob/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
