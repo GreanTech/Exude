@@ -22,11 +22,11 @@ In the above, very trivial example, three test cases are created and returned fr
 
 > 3 passed, 0 failed, 0 skipped, took 0,06 seconds (xUnit.net 1.9.2 build 1705).
 
-The flexible design of Exude give you many opportunities for organising your test cases.
+The flexible design of Exude gives you many opportunities for organising your test cases.
 
 ### Generic Test Cases
 
-If you need to access the test class that contains the test methods, you can use the `TestCase<T>` class, which also implements `ITestCase`. The object passed into each `TestCase` instance's Action is a instance of the containing test class. If you use `TestCase<T>`, you don't have to perform the cast yourself.
+If you need to access the test class that contains the test methods, you can use the `TestCase<T>` class, which also implements `ITestCase`. The object passed into each `TestCase` instance's Action is an instance of the containing test class. If you use `TestCase<T>`, you don't have to perform the cast yourself.
 
 Here's an example which is difficult to write with xUnit.net's built-in data sources:
 
