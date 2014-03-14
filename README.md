@@ -78,7 +78,7 @@ Each `TestCase<Scenario>` instance adapts an `Action<Scenario>`, which invokes t
 
 ## Get Exude
 
-Obviously, the source code is available here on GitHub, and you can soon download the compiled library with NuGet.
+Obviously, the source code is available here on GitHub, but you can [download the compiled library with NuGet](http://www.nuget.org/packages/Exude).
 
 ### Versioning
 
