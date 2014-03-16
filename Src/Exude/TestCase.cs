@@ -20,6 +20,7 @@ namespace Grean.Exude
         private Action<object> testAction;
 
         public TestCase(Action testAction)
+            : this(new Action<object>(_ => testAction()))
         {
         }
 

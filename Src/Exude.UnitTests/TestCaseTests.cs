@@ -31,6 +31,18 @@ namespace Grean.Exude.UnitTests
         }
 
         [Fact]
+        public void AdaptedTestActionIsCorrect()
+        {
+            var verified = false;
+            Action testAction = () => verified = true;
+            var sut = new TestCase(testAction);
+
+            sut.TestAction(new object());
+
+            Assert.True(verified);
+        }
+
+        [Fact]
         public void ConstructWithNullTestActionThrows()
         {
             Assert.Throws<ArgumentNullException>(
