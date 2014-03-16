@@ -19,6 +19,10 @@ namespace Grean.Exude
     {
         private Action<object> testAction;
 
+        public TestCase(Action testAction)
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="TestCase"/> class.
         /// </summary>

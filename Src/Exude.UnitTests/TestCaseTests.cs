@@ -34,7 +34,7 @@ namespace Grean.Exude.UnitTests
         public void ConstructWithNullTestActionThrows()
         {
             Assert.Throws<ArgumentNullException>(
-                () => new TestCase(null));
+                () => new TestCase((Action<object>)null));
         }
 
         [Fact]
