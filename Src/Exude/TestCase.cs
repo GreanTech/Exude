@@ -19,6 +19,37 @@ namespace Grean.Exude
     {
         private Action<object> testAction;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TestCase"/> class.
+        /// </summary>
+        /// <param name="testAction">
+        /// The test action to be invoked when the test is executed.
+        /// </param>
+        /// <remarks>
+        /// <para>
+        /// When this test case is exececuted, the
+        /// <paramref name="testAction" /> is invoked.
+        /// </para>
+        /// <para>
+        /// The test action constructor argument is subsequently available as
+        /// the <see cref="TestAction" /> property.
+        /// </para>
+        /// </remarks>
+        /// <example>
+        /// This simple example returns three test cases that all pass:
+        /// <code><![CDATA[[FirstClassTests]
+        /// public static IEnumerable<ITestCase> YieldFirstClassTests()
+        /// {
+        ///     yield return new TestCase(() => Assert.Equal(1, 1));
+        ///     yield return new TestCase(() => Assert.Equal(2, 2));
+        ///     yield return new TestCase(() => Assert.Equal(3, 3));
+        /// }]]>
+        /// </code>
+        /// </example>
+        /// <exception cref="System.ArgumentNullException">
+        /// <paramref name="testAction" /> is <see langword="null" />
+        /// </exception>
+        /// <seealso cref="TestAction" />
         public TestCase(Action testAction)
             : this(TestCase.ConvertToAction<object>(testAction))
         {
