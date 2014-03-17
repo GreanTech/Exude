@@ -43,10 +43,17 @@ namespace Grean.Exude.UnitTests
         }
 
         [Fact]
-        public void ConstructWithNullTestActionThrows()
+        public void ConstructWithNullTestActionOfObjectThrows()
         {
             Assert.Throws<ArgumentNullException>(
                 () => new TestCase((Action<object>)null));
+        }
+
+        [Fact]
+        public void ConstructWithNullTestActionThrows()
+        {
+            Assert.Throws<ArgumentNullException>(
+                () => new TestCase((Action)null));
         }
 
         [Fact]

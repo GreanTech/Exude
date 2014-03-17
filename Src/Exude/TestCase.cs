@@ -20,7 +20,7 @@ namespace Grean.Exude
         private Action<object> testAction;
 
         public TestCase(Action testAction)
-            : this(new Action<object>(_ => testAction()))
+            : this(TestCase.ConvertToAction<object>(testAction))
         {
         }
 
@@ -96,6 +96,14 @@ namespace Grean.Exude
         public Action<object> TestAction
         {
             get { return this.testAction; }
+        }
+
+        private static Action<T> ConvertToAction<T>(Action testAction)
+        {
+            if (testAction == null)
+                throw new ArgumentNullException("testAction");
+
+            return new Action<T>(_ => testAction());
         }
     }
 
