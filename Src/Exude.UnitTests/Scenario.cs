@@ -14,6 +14,10 @@ namespace Grean.Exude.UnitTests
             yield return new TestCase(_ => Assert.Equal(1, 1));
             yield return new TestCase(_ => Assert.Equal(2, 2));
             yield return new TestCase(_ => Assert.Equal(3, 3));
+
+            yield return new TestCase(() => Assert.Equal(1, 1));
+            yield return new TestCase(() => Assert.Equal(2, 2));
+            yield return new TestCase(() => Assert.Equal(3, 3));
         }
 
         [FirstClassTests]
