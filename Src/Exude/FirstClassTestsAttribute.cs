@@ -81,8 +81,7 @@ namespace Grean.Exude
                     invalidReturnTypeErrorMessage,
                     "method");
 
-            var testClassInstance = method.CreateInstance();
-            var returnValue = method.MethodInfo.Invoke(testClassInstance, null);
+            var returnValue = FirstClassTestsAttribute.GetReturnValue(method);
             return from tc in (IEnumerable<ITestCase>)returnValue
                    select tc.ConvertToTestCommand(method);
         }
@@ -91,6 +90,14 @@ namespace Grean.Exude
         {
             return !typeof(IEnumerable<ITestCase>).IsAssignableFrom(
                 method.MethodInfo.ReturnType);
+        }
+
+        private static object GetReturnValue(IMethodInfo method)
+        {
+            if (method.Class.IsAbstract && method.Class.IsSealed)
+                return method.MethodInfo.Invoke(null, null);
+
+            return method.MethodInfo.Invoke(method.CreateInstance(), null);
         }
 
         private const string invalidReturnTypeErrorMessage = @"The supplied method does not return IEnumerable<ITestCase>. When using the [FirstClassTests] attribute, the method it adorns must return IEnumerable<ITestCase>; for example:

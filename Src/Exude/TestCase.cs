@@ -116,7 +116,14 @@ namespace Grean.Exude
             if (method == null)
                 throw new ArgumentNullException("method");
 
-            return new FirstClassCommand(this.testAction, method, true);
+            var shouldCreateInstance =
+                !method.Class.IsAbstract &&
+                !method.Class.IsSealed;
+
+            return new FirstClassCommand(
+                this.testAction,
+                method,
+                shouldCreateInstance);
         }
 
         /// <summary>Gets the test action.</summary>
@@ -242,7 +249,14 @@ namespace Grean.Exude
             if (method == null)
                 throw new ArgumentNullException("method");
 
-            return new FirstClassCommand(this.AdaptTest, method, true);
+            var shouldCreateInstance =
+                !method.Class.IsAbstract &&
+                !method.Class.IsSealed;
+
+            return new FirstClassCommand(
+                this.AdaptTest,
+                method,
+                shouldCreateInstance);
         }
 
         private void AdaptTest(object testClass)

@@ -66,5 +66,16 @@ namespace Grean.Exude.UnitTests
                         s => s.AParameterizedTest(tc.x, tc.y)))
                 .ToArray();
         }
+
+        public static class Module
+        {
+            [FirstClassTests]
+            public static IEnumerable<ITestCase> YieldFirstClassTests()
+            {
+                yield return new TestCase(() => Assert.Equal(1, 1));
+                yield return new TestCase(() => Assert.Equal(2, 2));
+                yield return new TestCase(() => Assert.Equal(3, 3));
+            }
+        }
     }
 }
