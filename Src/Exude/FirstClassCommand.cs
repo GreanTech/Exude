@@ -68,7 +68,6 @@ namespace Grean.Exude
 
             this.testAction = testAction;
             this.shouldCreateInstance = shouldCreateInstance;
-
         }
 
         /// <summary>
