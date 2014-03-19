@@ -35,13 +35,20 @@ namespace Grean.Exude
         /// likely be the method adorned with an
         /// <see cref="FirstClassTestsAttribute" />.
         /// </param>
+        /// <param name="shouldCreateInstance">
+        /// Indicates whether an instance of the type that hosts the
+        /// <paramref name="testMethod" /> should be created. For static types,
+        /// the value for this parameter is <see langword="false" />. For non-
+        /// static types, the value for this parameter is <see langword="true" />.
+        /// </param>
         /// <remarks>
         /// <para>
         /// The <paramref name="testAction" /> constructor argument is
         /// subsequently available as the <see cref="TestAction" /> property.
-        /// Likewise, the <paramref name="testMethod" /> constructor argument
-        /// is subsequently available as the <see cref="HostTestMethod" />
-        /// property.
+        /// Likewise, the <paramref name="testMethod" /> and the
+        /// <paramref name="shouldCreateInstance" /> constructor arguments are
+        /// subsequently available as the <see cref="HostTestMethod" /> and
+        /// <see cref="ShouldCreateInstance" /> properties, respectively.
         /// </para>
         /// </remarks>
         /// <exception cref="System.ArgumentNullException">
@@ -49,6 +56,7 @@ namespace Grean.Exude
         /// </exception>
         /// <seealso cref="TestAction" />
         /// <seealso cref="HostTestMethod" />
+        /// <seealso cref="ShouldCreateInstance" />
         public FirstClassCommand(
             Action<object> testAction,
             IMethodInfo testMethod,
@@ -88,7 +96,7 @@ namespace Grean.Exude
         /// <value>
         /// The test action originally supplied as a constructor argument.
         /// </value>
-        /// <seealso cref="FirstClassCommand(Action{object}, IMethodInfo)" />
+        /// <seealso cref="FirstClassCommand(Action{object}, IMethodInfo, bool)" />
         public Action<object> TestAction
         {
             get { return this.testAction; }
