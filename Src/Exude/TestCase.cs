@@ -18,6 +18,7 @@ namespace Grean.Exude
     public class TestCase : ITestCase
     {
         private Action<object> testAction;
+        private readonly bool shouldCreateInstance;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TestCase"/> class.
@@ -53,6 +54,7 @@ namespace Grean.Exude
         public TestCase(Action testAction)
             : this(TestCase.ConvertToAction<object>(testAction))
         {
+            this.shouldCreateInstance = false;
         }
 
         /// <summary>
@@ -96,6 +98,7 @@ namespace Grean.Exude
                 throw new ArgumentNullException("testAction");
 
             this.testAction = testAction;
+            this.shouldCreateInstance = true;
         }
 
         /// <summary>
@@ -116,14 +119,10 @@ namespace Grean.Exude
             if (method == null)
                 throw new ArgumentNullException("method");
 
-            var shouldCreateInstance =
-                !method.Class.IsAbstract &&
-                !method.Class.IsSealed;
-
             return new FirstClassCommand(
                 this.testAction,
                 method,
-                shouldCreateInstance);
+                this.shouldCreateInstance);
         }
 
         /// <summary>Gets the test action.</summary>
@@ -249,14 +248,7 @@ namespace Grean.Exude
             if (method == null)
                 throw new ArgumentNullException("method");
 
-            var shouldCreateInstance =
-                !method.Class.IsAbstract &&
-                !method.Class.IsSealed;
-
-            return new FirstClassCommand(
-                this.AdaptTest,
-                method,
-                shouldCreateInstance);
+            return new FirstClassCommand(this.AdaptTest, method, true);
         }
 
         private void AdaptTest(object testClass)
