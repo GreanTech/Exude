@@ -116,7 +116,7 @@ namespace Grean.Exude
             if (method == null)
                 throw new ArgumentNullException("method");
 
-            return new FirstClassCommand(this.testAction, method);
+            return new FirstClassCommand(this.testAction, method, true);
         }
 
         /// <summary>Gets the test action.</summary>
@@ -242,7 +242,7 @@ namespace Grean.Exude
             if (method == null)
                 throw new ArgumentNullException("method");
 
-            return new FirstClassCommand(this.AdaptTest, method);
+            return new FirstClassCommand(this.AdaptTest, method, true);
         }
 
         private void AdaptTest(object testClass)

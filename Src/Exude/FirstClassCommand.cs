@@ -21,6 +21,7 @@ namespace Grean.Exude
     public class FirstClassCommand : TestCommand
     {
         private readonly Action<object> testAction;
+        private readonly bool shouldCreateInstance;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FirstClassCommand"/>
@@ -50,13 +51,16 @@ namespace Grean.Exude
         /// <seealso cref="HostTestMethod" />
         public FirstClassCommand(
             Action<object> testAction,
-            IMethodInfo testMethod)
+            IMethodInfo testMethod,
+            bool shouldCreateInstance)
             : base(testMethod, null, -1)
         {
             if (testAction == null)
                 throw new ArgumentNullException("testAction");
 
             this.testAction = testAction;
+            this.shouldCreateInstance = shouldCreateInstance;
+
         }
 
         /// <summary>
@@ -77,7 +81,7 @@ namespace Grean.Exude
         /// <inheritdoc />
         public override bool ShouldCreateInstance
         {
-            get { return true; }
+            get { return this.shouldCreateInstance; }
         }
 
         /// <summary>Gets the test action.</summary>

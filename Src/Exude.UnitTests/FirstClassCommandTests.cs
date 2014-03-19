@@ -15,7 +15,7 @@ namespace Grean.Exude.UnitTests
         public void SutIsTestCommand()
         {
             Action<object> dummyAction = _ => { };
-            var sut = new FirstClassCommand(dummyAction, dummyMethod);
+            var sut = new FirstClassCommand(dummyAction, dummyMethod, false);
             Assert.IsAssignableFrom<ITestCommand>(sut);
         }
 
@@ -23,9 +23,21 @@ namespace Grean.Exude.UnitTests
         public void TestActionIsCorrect()
         {
             Action<object> expected = _ => { };
-            var sut = new FirstClassCommand(expected, dummyMethod);
+            var sut = new FirstClassCommand(expected, dummyMethod, false);
 
             Action<object> actual = sut.TestAction;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void ShouldCreateInstanceIsCorrect()
+        {
+            Action<object> dummyAction = _ => { };
+            var expected = true;
+            var sut = new FirstClassCommand(dummyAction, dummyMethod, expected);
+
+            var actual = sut.ShouldCreateInstance;
 
             Assert.Equal(expected, actual);
         }
@@ -36,7 +48,7 @@ namespace Grean.Exude.UnitTests
             var verified = false;
             var obj = new object();
             Action<object> spy = x => verified = x == obj;
-            var sut = new FirstClassCommand(spy, dummyMethod);
+            var sut = new FirstClassCommand(spy, dummyMethod, false);
 
             sut.Execute(obj);
 
@@ -47,7 +59,7 @@ namespace Grean.Exude.UnitTests
         public void ExecuteSuccessfullyReturnsCorrectResult()
         {
             Action<object> testAction = _ => { };
-            var sut = new FirstClassCommand(testAction, anotherMethod);
+            var sut = new FirstClassCommand(testAction, anotherMethod, false);
 
             var actual = sut.Execute(new object());
 
@@ -61,7 +73,7 @@ namespace Grean.Exude.UnitTests
         {
             Action<object> testAction = _ => { };
             var expected = anotherMethod;
-            var sut = new FirstClassCommand(testAction, expected);
+            var sut = new FirstClassCommand(testAction, expected, false);
 
             var actual = sut.HostTestMethod;
 
@@ -72,13 +84,13 @@ namespace Grean.Exude.UnitTests
         public void ConstructWithNullTestActionThrows()
         {
             Assert.Throws<ArgumentNullException>(
-                () => new FirstClassCommand(null, dummyMethod));
+                () => new FirstClassCommand(null, dummyMethod, false));
         }
 
         [Fact]
         public void TimeoutIsCorrect()
         {
-            var sut = new FirstClassCommand(_ => { }, dummyMethod);
+            var sut = new FirstClassCommand(_ => { }, dummyMethod, false);
 
             var actual = sut.Timeout;
 
@@ -91,7 +103,7 @@ namespace Grean.Exude.UnitTests
         [Fact]
         public void DisplayNameIsNotEmpty()
         {
-            var sut = new FirstClassCommand(_ => { }, dummyMethod);
+            var sut = new FirstClassCommand(_ => { }, dummyMethod, false);
             var actual = sut.DisplayName;
             Assert.False(
                 string.IsNullOrEmpty(actual),
@@ -101,7 +113,7 @@ namespace Grean.Exude.UnitTests
         [Fact]
         public void TestMethodIsCorrect()
         {
-            var sut = new FirstClassCommand(_ => { }, anotherMethod);
+            var sut = new FirstClassCommand(_ => { }, anotherMethod, false);
             IMethodInfo actual = sut.HostTestMethod;
             Assert.Equal(anotherMethod, actual);
         }
